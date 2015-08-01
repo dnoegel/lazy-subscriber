@@ -1,0 +1,12 @@
+{
+    "name": "dnoegel/lazy-subscriber",
+    "description": "Will allow you to define anonymous function as event listener callbacks for Shopware (4.2.0+)",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Nögel"
+        }
+    ],
+    "require": {}
+}
