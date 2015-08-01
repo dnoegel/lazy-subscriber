@@ -77,3 +77,9 @@ class Shopware_Plugins_Frontend_YourPlugin_Bootstrap extends Shopware_Components
 }
 ```
 
+# Should I use it?
+It might be ok for populating the DI in your plugin as this is a bit cumbersome, especially during development.
+You should **not** use it for default events, and you should not use it as a way to define all your event subscribers
+in one big lazy subscriber.
+In addition to that be aware, that event subscribers works nicely - if you know what is going on behind the scenes and what
+to take care of. If this is not the case, you might want to stick to the "default event registration" way for the time being.
