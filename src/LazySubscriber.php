@@ -35,7 +35,9 @@ abstract class LazySubscriber implements SubscriberInterface
      *
      * @return array
      */
-    abstract function define();
+    static function define() {
+        return [];
+    }
 
 
     /**
@@ -47,7 +49,7 @@ abstract class LazySubscriber implements SubscriberInterface
     {
         $events = array();
 
-        foreach (self::$container as $name => $function) {
+        foreach (static::define() as $name => $function) {
             $events['Enlight_Bootstrap_InitResource_' . $name] = 'load';
         }
 
