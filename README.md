@@ -23,8 +23,8 @@ class ContainerSubscriber extends LazySubscriber
             'my_plugin.cart' => function() {
                 return new Cart();
             },
-            'my_plugin.persister => function(DIC $c) {
-                return new Persister($c->get('connection'));
+            'my_plugin.persister => function(\Enlight_Plugin_Bootstrap_Config $plugin) {
+                return new Persister($plugin->get('connection'));
             }
         ];
     }
