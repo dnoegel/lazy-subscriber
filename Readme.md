@@ -43,6 +43,10 @@ class Shopware_Plugins_Frontend_YourPlugin_Bootstrap extends Shopware_Components
             'Shopware\YourPlugin',
             $this->Path()
         );
+        
+        // you can use this
+        require_once __DIR__ . '/vendor/autoload.php';
+        // or this line to include the dependency:
         $this->Application()->Loader()->registerNamespace(
             'Dnoegel\LazySubscriber',
             $this->Path() . '/vendor/dnoegel/lazy-subscriber/src'
