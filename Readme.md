@@ -66,7 +66,7 @@ class Shopware_Plugins_Frontend_YourPlugin_Bootstrap extends Shopware_Components
         $this->registerMyComponents();
 
         $subscribers = array(
-            new \Shopware\YourPlugin\Subscriber\ContainerSubscriber($this)
+            new \Shopware\YourPlugin\Subscriber\ContainerSubscriber(Shopware()->Container())
 
         );
 
