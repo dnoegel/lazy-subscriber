@@ -23,7 +23,7 @@ class ContainerSubscriber extends LazySubscriber
             'my_plugin.cart' => function() {
                 return new Cart();
             },
-            'my_plugin.persister => function(DIC $c) {
+            'my_plugin.persister' => function(DIC $c) {
                 return new Persister($c->get('connection'));
             }
         ];
