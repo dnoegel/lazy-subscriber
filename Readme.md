@@ -9,7 +9,7 @@ your services as you would in e.g. Pimple.
 
 # How to use
 ## Install
-If you want to use composer for this dependency, just run `composer install dnoegel/lazy-subscriber`.
+If you want to use composer for this dependency, just run `composer require dnoegel/lazy-subscriber`.
 
 ## The Subscriber
 ```php
