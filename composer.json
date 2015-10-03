@@ -8,5 +8,10 @@
             "name": "Daniel Nögel"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Dnoegel\\LazySubscriber\\": "src/"
+        }
+    }
 }
