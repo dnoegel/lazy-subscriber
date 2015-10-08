@@ -70,6 +70,9 @@ abstract class LazySubscriber implements SubscriberInterface
 
         // call anonymous function in order to register service
         $method = self::$definitions[$name];
+        if (!$method) {
+            throw new \RuntimeException("Service named $name not found");
+        }
         return $method(self::$container, $args);
     }
 }
