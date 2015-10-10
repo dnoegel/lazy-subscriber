@@ -16,12 +16,13 @@ use Shopware\Components\DependencyInjection\Container as DIC;
 abstract class LazySubscriber implements SubscriberInterface
 {
     private static $container;
-    private static $definitions;
+    private static $definitions = [];
+    private static $alreadyDefined = [];
 
     public function __construct(DIC $container)
     {
         self::$container = $container;
-        self::$definitions = $this->define();
+        self::$definitions = self::$definitions + $this->define();
     }
 
     /**
@@ -49,8 +50,11 @@ abstract class LazySubscriber implements SubscriberInterface
     {
         $events = array();
 
-        foreach (static::define() as $name => $function) {
-            $events['Enlight_Bootstrap_InitResource_' . $name] = 'load';
+        foreach (self::$definitions as $name => $function) {
+            if (!in_array($name, self::$alreadyDefined)) {
+                $events['Enlight_Bootstrap_InitResource_' . $name] = 'load';
+                self::$alreadyDefined[] = $name;
+            }
         }
 
         return $events;
