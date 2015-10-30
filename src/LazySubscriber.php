@@ -4,7 +4,6 @@
 namespace Dnoegel\LazySubscriber;
 
 use Enlight\Event\SubscriberInterface;
-use Shopware\Components\DependencyInjection\Container as DIC;
 
 /**
  * Class LazySubscriber is a convenient base subscriber for the Shopware SubscriberInterface. Just extend it
@@ -15,13 +14,13 @@ use Shopware\Components\DependencyInjection\Container as DIC;
  */
 abstract class LazySubscriber implements SubscriberInterface
 {
-    private static $container;
+    private static $plugin;
     private static $definitions = [];
     private static $alreadyDefined = [];
 
-    public function __construct(DIC $container)
+    public function __construct(\Enlight_Plugin_Bootstrap_Config $plugin)
     {
-        self::$container = $container;
+        self::$plugin = $plugin;
         self::$definitions = self::$definitions + $this->define();
     }
 
@@ -29,8 +28,8 @@ abstract class LazySubscriber implements SubscriberInterface
      * return an array with your services and a callback function
      *
      * array(
-     *  'my_plugin.my_service' => function($c) {
-     *          return new MyService($c->get('db'));
+     *  'my_plugin.my_service' => function($plugin) {
+     *          return new MyService($plugin->get('db'));
      *      }
      *  )
      *
@@ -42,7 +41,7 @@ abstract class LazySubscriber implements SubscriberInterface
 
 
     /**
-     * Generate the subscribedEvents array depending on the $container static property
+     * Generate the subscribedEvents array depending on the self::$definitions array
      *
      * @return array
      */
@@ -77,6 +76,6 @@ abstract class LazySubscriber implements SubscriberInterface
         if (!$method) {
             throw new \RuntimeException("Service named $name not found");
         }
-        return $method(self::$container, $args);
+        return $method(self::$plugin, $args);
     }
 }
